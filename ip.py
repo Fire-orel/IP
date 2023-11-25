@@ -33,7 +33,7 @@ maska_ou_bin=["{0:08b}".format(int(i)) for i in maska_ou.split(".")]
 
 
 
-# узнаём ip адрес сети
+#узнаём ip адрес сети
 ip_ou_seti_bin=[]
 for i in range(4):
     ip=ip_in_bin[i]
@@ -45,7 +45,6 @@ for i in range(4):
         else:
             fin+="0"
     ip_ou_seti_bin.append(fin)
-ip_ou_seti=".".join([str(int(i,2)) for i in ip_ou_seti_bin])
 
 
 
@@ -72,13 +71,36 @@ for i in range(4):
         else:
             fin+="0"
     ip_ou_shir_bin.append(fin)
-ip_ou_shir=".".join([str(int(i,2)) for i in ip_ou_shir_bin])
+
+#узнаем класс ip адреса
+klass_ip=""
+for klass in masiv["klass"]:
+    if int(ip_in[0])>=masiv["klass"][klass][0] and int(ip_in[0])<=masiv["klass"][klass][1]:
+        klass_ip=klass
+
+
+#узнаём тип ip адреса
+tip_ip=""
+if ip_in[0]=="10" or ip_in[0]=="127" or (ip_in[0]=="172" and (int(ip_in[1])>16 and int(ip_in[1])<=32)) or (ip_in[0]=='192' and ip_in[1]=='168'):
+    tip_ip="Локальный"
+else:
+    tip_ip="Глобальный"
 
 
 
 #Вывод данных
 print(f"ip адрес: {'.'.join(ip_in)}")
+
 print(f"Маска сети: {maska_ou}")
+
+ip_ou_seti=".".join([str(int(i,2)) for i in ip_ou_seti_bin])
 print(f"ip адрес сети: {ip_ou_seti}")
+
+ip_ou_shir=".".join([str(int(i,2)) for i in ip_ou_shir_bin])
 print(f"ip адрес широковещание: {ip_ou_shir}")
+
 print(f"Количество узлов: {2**(32-int(maska_in))-2}")
+
+print(f"Класс ip адреса: {klass_ip}")
+
+print(f"Тип ip адреса: {tip_ip}")
