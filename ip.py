@@ -89,6 +89,7 @@ else:
 
 
 #Вывод данных
+print()
 print(f"ip адрес: {'.'.join(ip_in)}")
 
 print(f"Маска сети: {maska_ou}")
