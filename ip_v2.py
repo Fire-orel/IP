@@ -84,7 +84,9 @@ class window(Ui_Form,QMainWindow):
 
             #узнаём тип ip адреса
             tip_ip=""
-            if ip_in[0]=="10" or ip_in[0]=="127" or (ip_in[0]=="172" and (int(ip_in[1])>16 and int(ip_in[1])<=32)) or (ip_in[0]=='192' and ip_in[1]=='168'):
+            if ip_in[0]=="127" or ip_in[0]=="0"or ip_in[0]=="255":
+                tip_ip="Специальный"
+            elif ip_in[0]=="10" or ip_in[0]=="127" or (ip_in[0]=="172" and (int(ip_in[1])>16 and int(ip_in[1])<=32)) or (ip_in[0]=='192' and ip_in[1]=='168'):
                 tip_ip="Локальный"
             else:
                 tip_ip="Глобальный"
